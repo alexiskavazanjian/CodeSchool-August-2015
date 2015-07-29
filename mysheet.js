@@ -16,12 +16,13 @@ function onOpen() {
   ui.createMenu('CodeSchool')
       .addItem('Hello World!', 'showDialog')
       .addItem('Show Selected Value', 'showSelected')
+      .addItem('Log Selection', 'logSelection')
       .addToUi();
 }
 
 function showDialog() {
   Logger.log("saying hello...");
-  SpreadsheetApp.getUi().alert('Hello World!!');
+  SpreadsheetApp.getUi().alert('Hi Aashish!');
 }
 
 function DOUBLE_IT(input) {
@@ -29,6 +30,11 @@ function DOUBLE_IT(input) {
 }
 
 function showSelected() {
-  var mycell = sheet().getActiveCell();
-  Browser.msgBox("vfc:" + valueFromCell(mycell));
+  var myCell = sheet().getActiveCell();
+  Browser.msgBox("vfc:" + valueFromCell(myCell));
+}
+
+function logSelection() {
+  var myCell = sheet().getActiveCell();
+  Logger.log("logSelection(): row " + myCell.getRowIndex() + ", col " + myCell.getColumnIndex() + ": " + valueFromCell(myCell));
 }
